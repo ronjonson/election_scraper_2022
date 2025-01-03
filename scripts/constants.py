@@ -25,3 +25,10 @@ REP_TABLE = '''//*[@id="'resultDiv.'+6120"]/div[1]'''
 MAYOR_TABLE = '''//*[@id="'resultDiv.'+7184"]/div[1]'''
 VICE_MAYOR_TABLE = '''//*[@id="'resultDiv.'+8818"]/div[1]'''
 SP_TABLE = '''//*[@id="'resultDiv.'+10465"]/div[1]'''
+
+#arrow
+precinct_arrow = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[6]/nav-filter/div/span/span'
+precinct_textbox = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[6]/nav-filter/div/span/div/div/div[1]/input[1]'
+
+brgy_arrow = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span/span'
+brgy_textbox = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span/div/div/div[1]/input[1]'
