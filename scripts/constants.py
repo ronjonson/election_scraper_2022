@@ -1,24 +1,27 @@
-# Dropdowns
-region_dropdown = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[2]/nav-filter/div/span/div/div/span/span'
-province_dropdown = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[3]/nav-filter/div/span/div/div/span/span'
-city_dropdown = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[4]/nav-filter/div/span/div/div/span/span'
-brgy_dropdown = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span/div/div/span/span'
-precincts_dropdown = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[6]/nav-filter/div/span/div/div/span/span'
+#SITE
+SITE = "https://2022electionresults.comelec.gov.ph/#/er/0/"
+
+# DROPDOWNs
+REGION_DROPDOWN = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[2]/nav-filter/div/span/div/div/span/span'
+PROVINCE_DROPDOWN = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[3]/nav-filter/div/span/div/div/span/span'
+CITY_DROPDOWN = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[4]/nav-filter/div/span/div/div/span/span'
+BRGY_DROPDOWN = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span/div/div/span/span'
+PRECINCTS_DROPDOWN = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[6]/nav-filter/div/span/div/div/span/span'
 
 
-region_list = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[2]/nav-filter/div/span/div/div/div[2]/ul/li[12]'
-province_list = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[3]/nav-filter/div/span/div/div/div[2]/ul/li[6]'
-city_list = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[4]/nav-filter/div/span/div/div/div[2]/ul/li[5]'
-brgy_list = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span/div/div/div[2]/ul'
-precincts_list = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[6]/nav-filter/div/span/div/div/div[2]/ul'
+REGION_LIST = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[2]/nav-filter/div/span/div/div/div[2]/ul/li[12]'
+PROVINCE_LIST = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[3]/nav-filter/div/span/div/div/div[2]/ul/li[6]'
+CITY_LIST = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[4]/nav-filter/div/span/div/div/div[2]/ul/li[5]'
+BRGY_LIST = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span/div/div/div[2]/ul'
+PRECINCTS_LIST = '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[6]/nav-filter/div/span/div/div/div[2]/ul'
 
 # DATA
-precinct_metadata = '//*[@id="container"]/ui-view/div/div/div[2]/div[2]/div[2]/results-viewer/div[2]/div[1]/div[2]'
-president_table = '''//*[@id="'resultDiv.'+5587"]/div[1]'''
-vice_president_table = '''//*[@id="'resultDiv.'+5588"]/div[1]'''
-senator_table = '''//*[@id="'resultDiv.'+5589"]/div[1]'''
-partylist_table = '''//*[@id="'resultDiv.'+11172"]/div[1]'''
-rep_table = '''//*[@id="'resultDiv.'+6120"]/div[1]'''
-mayor_table = '''//*[@id="'resultDiv.'+7184"]/div[1]'''
-vice_mayor_table = '''//*[@id="'resultDiv.'+8818"]/div[1]'''
-sp_table = '''//*[@id="'resultDiv.'+10465"]/div[1]'''
+PRECINCT_METADATA = '//*[@id="container"]/ui-view/div/div/div[2]/div[2]/div[2]/results-viewer/div[2]/div[1]/div[2]'
+PRESIDENT_TABLE = '''//*[@id="'resultDiv.'+5587"]/div[1]'''
+VICE_PRESIDENT_TABLE = '''//*[@id="'resultDiv.'+5588"]/div[1]'''
+SENATOR_TABLE = '''//*[@id="'resultDiv.'+5589"]/div[1]'''
+PARTYLIST_TABLE = '''//*[@id="'resultDiv.'+11172"]/div[1]'''
+REP_TABLE = '''//*[@id="'resultDiv.'+6120"]/div[1]'''
+MAYOR_TABLE = '''//*[@id="'resultDiv.'+7184"]/div[1]'''
+VICE_MAYOR_TABLE = '''//*[@id="'resultDiv.'+8818"]/div[1]'''
+SP_TABLE = '''//*[@id="'resultDiv.'+10465"]/div[1]'''
