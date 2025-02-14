@@ -1,13 +1,5 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-from selenium.webdriver.common.by import By
+from classes import Location, ElectionScraper
 
-driver = webdriver.Firefox()
-driver.get("http://www.python.org")
-assert "Python" in driver.title
-elem = driver.find_element(By.NAME, "q")
-elem.clear()
-elem.send_keys("pycon")
-elem.send_keys(Keys.RETURN)
-assert "No results found." not in driver.page_source
-driver.close()
+a = ElectionScraper(region="REGION VI", province="NEGROS OCCIDENTAL", city="CITY OF BACOLOD", brgy="TACULING", precinct="45010362")
+
+a.scrape_data()

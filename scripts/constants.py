@@ -11,11 +11,11 @@ DROPDOWN = {
 
 
 DROPDOWN_VALUES = {
-    'REGION': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[2]/nav-filter/div/span/div/div/div[2]/ul/li[12]',
-    'PROVINCE': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[3]/nav-filter/div/span/div/div/div[2]/ul/li[6]',
-    'CITY': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[4]/nav-filter/div/span/div/div/div[2]/ul/li[5]',
-    'BRGY': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span/div/div/div[2]/ul',
-    'PRECINCT': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[6]/nav-filter/div/span/div/div/div[2]/ul'
+    'REGION': '/html/body/div/div/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[2]/nav-filter/div/span/div/div/div[2]/ul',
+    'PROVINCE': '/html/body/div/div/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[3]/nav-filter/div/span/div/div/div[2]/ul',
+    'CITY': '/html/body/div/div/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[4]/nav-filter/div/span/div/div/div[2]/ul',
+    'BRGY': '/html/body/div/div/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span/div/div/div[2]/ul',
+    'PRECINCT': '/html/body/div/div/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[3]/nav-filter/div/span/div/div/div[2]/ul'
 }
 
 TEXTBOX = {
