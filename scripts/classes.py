@@ -60,16 +60,16 @@ class ElectionScraper:
                 region: str=None,
                 province: str=None,
                 city: str=None,
-                brgy: str=None,
+                barangay: str=None,
                 precinct: str=None):
         region = region.upper() if region is not None else region
         province = province.upper() if province is not None else province
         city = city.upper() if city is not None else city
-        brgy = brgy.upper() if brgy is not None else brgy
+        barangay = barangay.upper() if barangay is not None else barangay
         precinct = precinct.upper() if precinct is not None else precinct
 
         # Value Error will be raised if lower tiered parameters have value if higher tier has value
-        self.location = Location(region, province, city, brgy, precinct)
+        self.location = Location(region, province, city, barangay, precinct)
         ### initialize web driver
 
 
@@ -99,7 +99,7 @@ class ElectionScraper:
             print(f"option.text: {option.text}")
             if option.text == choice:
                 option.click()
-                break
+                return
 
         raise ValueError(f'{choice} not found in list. Please choose the following options: {', '.join(options)}')
             
@@ -119,24 +119,35 @@ class ElectionScraper:
         #   2.c. save data somewhere 
 
         def scrape_level(current_level):
-            if current_level == 'precinct':
+            if current_level == 'PRECINCT':
                 # Start scraping data at the precinct level
                 #self.scrape_precinct_data()
                 print("Scraping precinct data! brrbrr")
                 
             else:
                 # Get the next level in the hierarchy
-                next_level_index = loc_fields.index(current_level) + 1
+                for i , field in enumerate(loc_fields):
+                    if field.name == current_level:
+                        next_level_index = i+1
+                        break
+
                 if next_level_index < len(loc_fields):
-                    print(f"Scraping {current_level} data!")
                     next_level = loc_fields[next_level_index].name
-                    print(f"Next level: {next_level}")
+                    self.click_option(DROPDOWN[next_level], DROPDOWN_VALUES[next_level], driver=self.driver)
                     options = self.get_dropdown_values(DROPDOWN_VALUES[next_level], driver=self.driver)
                     for option in options:
-                        self.select_option(DROPDOWN[next_level], DROPDOWN_VALUES[next_level], option.text)
+                        option.click()
                         scrape_level(next_level)
                         # Reset to the current level after scraping the next level
-                        self.select_option(DROPDOWN[current_level], DROPDOWN_VALUES[current_level], getattr(self.location, current_level))
+                        # to reset, find element with same value of option.text and click
+                        reset_option_xpath = f"//li[text()='{option.text}']"
+                        reset_option = self.driver.find_element(by=By.XPATH, value=reset_option_xpath)
+                        reset_option.click()
+                        # Clear the textbox
+                        textbox_xpath = DROPDOWN[next_level].replace('dropdown', 'textbox')
+                        textbox = self.driver.find_element(by=By.XPATH, value=textbox_xpath)
+                        textbox.clear()
+
 
     
 
