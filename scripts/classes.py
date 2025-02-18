@@ -74,15 +74,14 @@ class ElectionScraper:
 
 
         self.start_location = self.location.get_start_location()
+        
 
-    def click_option(self, dropdown_xpath: str, list_xpath:str, driver:webdriver=None):
+    def click_option(self, dropdown_xpath: str, driver:webdriver=None):
         """Selects the given dropdown and area (Region, Province, City, Barangay, Precinct)"""
         driver = self.driver if driver is None else driver
-
+        time.sleep(0.25)
         driver.find_element(by=By.XPATH, value=dropdown_xpath).click()
-        time.sleep(0.5)
-        #driver.find_element(by=By.XPATH, value=list_xpath).click()
-        #time.sleep(0.5)
+        time.sleep(0.25)
 
     def get_dropdown_values(self, x_path:str, driver:webdriver) -> list:
         dropdown_list = driver.find_element(by=By.XPATH, value=x_path)
@@ -92,7 +91,7 @@ class ElectionScraper:
 
     def select_option(self, dropdown_xpath: str, list_xpath:str, choice:str, driver:webdriver=None):
         driver = self.driver if driver is None else driver
-        self.click_option(dropdown_xpath, list_xpath, driver)
+        self.click_option(dropdown_xpath, driver)
         options = self.get_dropdown_values(list_xpath, driver=driver)
 
         for option in options:
@@ -103,7 +102,11 @@ class ElectionScraper:
 
         raise ValueError(f'{choice} not found in list. Please choose the following options: {', '.join(options)}')
             
-
+    def clear_textbox(self, textbox_xpath:str, value:str=None,driver:webdriver=None):
+        driver = self.driver if driver is None else driver
+        textbox = driver.find_element(By.XPATH, f"//input[@value='{value}']")
+        textbox.clear()
+        
     def scrape_data(self):
         self.driver = webdriver.Firefox()
         self.driver.get(SITE)
@@ -133,16 +136,22 @@ class ElectionScraper:
 
                 if next_level_index < len(loc_fields):
                     next_level = loc_fields[next_level_index].name
-                    self.click_option(DROPDOWN[next_level], DROPDOWN_VALUES[next_level], driver=self.driver)
+
+                    placeholder_value = f"//input[@placeholder='{DROPDOWN_PLACEHOLDER[next_level]}']"
+                    try:
+                        self.click_option(placeholder_value, driver=self.driver)
+                    except:
+                        self.click_option(DROPDOWN[key], DROPDOWN_VALUES[key], value, self.driver)
                     options = self.get_dropdown_values(DROPDOWN_VALUES[next_level], driver=self.driver)
                     for option in options:
+                        current_text = option.text
                         option.click()
                         scrape_level(next_level)
                         # Reset to the current level after scraping the next level
                         # to reset, find element with same value of option.text and click
-                        reset_option_xpath = f"//li[text()='{option.text}']"
-                        reset_option = self.driver.find_element(by=By.XPATH, value=reset_option_xpath)
-                        reset_option.click()
+                        self.click_option(DROPDOWN[next_level], driver=self.driver)
+                        self.driver.find_element(by=By.XPATH, value=placeholder_value).clear()
+                        
                         # Clear the textbox
                         textbox_xpath = DROPDOWN[next_level].replace('dropdown', 'textbox')
                         textbox = self.driver.find_element(by=By.XPATH, value=textbox_xpath)
@@ -154,7 +163,11 @@ class ElectionScraper:
         for key, value in self.start_location.items():
             print(f"Scraping {key} data!")
             print(f"value: {value}")
-            self.select_option(DROPDOWN[key], DROPDOWN_VALUES[key], value, self.driver)
+            try:
+                self.select_option(f"//input[@placeholder='{DROPDOWN_PLACEHOLDER[key]}']", DROPDOWN_VALUES[key], value, self.driver)
+            except:
+                self.select_option(DROPDOWN[key], DROPDOWN_VALUES[key], value, self.driver)
+
             latest_key = key
 
         loc_fields = fields(self.location)
