@@ -4,6 +4,8 @@ import time
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 from dataclasses import fields
 
 from constants import *
@@ -79,9 +81,11 @@ class ElectionScraper:
     def click_option(self, dropdown_xpath: str, driver:webdriver=None):
         """Selects the given dropdown and area (Region, Province, City, Barangay, Precinct)"""
         driver = self.driver if driver is None else driver
-        time.sleep(0.25)
-        driver.find_element(by=By.XPATH, value=dropdown_xpath).click()
-        time.sleep(0.25)
+        option = WebDriverWait(driver, 10).until(
+            EC.element_to_be_clickable((By.XPATH, dropdown_xpath))
+        )
+        option.click()
+        #driver.find_element(by=By.XPATH, value=dropdown_xpath).click()
 
     def get_dropdown_values(self, x_path:str, driver:webdriver) -> list:
         dropdown_list = driver.find_element(by=By.XPATH, value=x_path)
@@ -97,6 +101,9 @@ class ElectionScraper:
         for option in options:
             print(f"option.text: {option.text}")
             if option.text == choice:
+                driver.execute_script("arguments[0].scrollIntoView(true);", option)
+                WebDriverWait(driver, 10).until(
+                    EC.element_to_be_clickable(option))
                 option.click()
                 return
 
@@ -126,7 +133,8 @@ class ElectionScraper:
                 # Start scraping data at the precinct level
                 #self.scrape_precinct_data()
                 print("Scraping precinct data! brrbrr")
-                
+                metadata = self.driver.find_element(by=By.TAG_NAME, value="results-viewer")
+                print(metadata)
             else:
                 # Get the next level in the hierarchy
                 for i , field in enumerate(loc_fields):
@@ -141,10 +149,10 @@ class ElectionScraper:
                     try:
                         self.click_option(placeholder_value, driver=self.driver)
                     except:
-                        self.click_option(DROPDOWN[key], DROPDOWN_VALUES[key], value, self.driver)
+                        self.click_option(DROPDOWN[next_level], self.driver)
                     options = self.get_dropdown_values(DROPDOWN_VALUES[next_level], driver=self.driver)
                     for option in options:
-                        current_text = option.text
+                        #current_text = option.text
                         option.click()
                         scrape_level(next_level)
                         # Reset to the current level after scraping the next level
@@ -156,9 +164,6 @@ class ElectionScraper:
                         textbox_xpath = DROPDOWN[next_level].replace('dropdown', 'textbox')
                         textbox = self.driver.find_element(by=By.XPATH, value=textbox_xpath)
                         textbox.clear()
-
-
-    
 
         for key, value in self.start_location.items():
             print(f"Scraping {key} data!")

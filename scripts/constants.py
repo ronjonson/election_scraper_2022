@@ -3,11 +3,11 @@ SITE = "https://2022electionresults.comelec.gov.ph/#/er/0/"
 
 
 DROPDOWN = {
-    'REGION': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[2]/nav-filter/div/span/span',
-    'PROVINCE': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[3]/nav-filter/div/span/span',
-    'CITY': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[4]/nav-filter/div/span/span',
-    'BARANGAY': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span/span',
-    'PRECINCT': "/html/body/div/div/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[6]/nav-filter/div/span/span"
+    'REGION': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[2]/nav-filter/div/span',
+    'PROVINCE': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[3]/nav-filter/div/span',
+    'CITY': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[4]/nav-filter/div/span',
+    'BARANGAY': '//*[@id="container"]/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[5]/nav-filter/div/span',
+    'PRECINCT': "/html/body/div/div/ui-view/div/div/div[1]/nav/div/ul/li/div[5]/div[6]/nav-filter/div/span"
 }
 
 DROPDOWN_VALUES = {
