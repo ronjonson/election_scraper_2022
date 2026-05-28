@@ -23,7 +23,7 @@ DROPDOWN_PLACEHOLDER = {
     'PROVINCE': 'Select/Enter Province/District',
     'CITY': 'Select/Enter City/Municipality',
     'BARANGAY': 'Select/Enter Barangay',
-    'PRECINCT': 'Select/Enter Precinct ID'
+    'PRECINCT': 'Select/Enter Clustered Precinct ID'
 }
 
 DROPDOWN_ALT = {
@@ -39,6 +39,18 @@ DROPDOWN_ALT = {
 PRECINCT_METADATA = '//*[@id="container"]/ui-view/div/div/div[2]/div[2]/div[2]/results-viewer/div[2]/div[1]/div[2]'
 
 # DATA TABLES
+DATA_TABLES = {
+    'PRESIDENT' : '''//*[@id="'resultDiv.'+5587"]/div[1]''',
+    'VICE_PRESIDENT' : '''//*[@id="'resultDiv.'+5588"]/div[1]''',
+    'SENATOR' : '''//*[@id="'resultDiv.'+5589"]/div[1]''',
+    'PARTYLIST' : '''//*[@id="'resultDiv.'+11172"]/div[1]''',
+    #'REP' : '''//*[@id="'resultDiv.'+6120"]/div[1]''',
+    #'MAYOR' : '''//*[@id="'resultDiv.'+7184"]/div[1]''',
+    #'VICE_MAYOR' : '''//*[@id="'resultDiv.'+8818"]/div[1]''',
+    #'SP' : '''//*[@id="'resultDiv.'+10465"]/div[1]'''
+}
+
+
 PRESIDENT_TABLE = '''//*[@id="'resultDiv.'+5587"]/div[1]'''
 VICE_PRESIDENT_TABLE = '''//*[@id="'resultDiv.'+5588"]/div[1]'''
 SENATOR_TABLE = '''//*[@id="'resultDiv.'+5589"]/div[1]'''
